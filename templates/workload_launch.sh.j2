@@ -40,8 +40,8 @@ function sanity_teardown {
         fi
     done
 
-    echo "Remove cinder volume ${CINDER_VOL_ID}"
-    openstack volume delete ${CINDER_VOL_ID}
+#    echo "Remove cinder volume ${CINDER_VOL_ID}"
+#    openstack volume delete ${CINDER_VOL_ID}
 
     echo "Clear default gateway from ${TENANT_NET_NAME}_router"
     openstack router unset --external-gateway ${TENANT_NET_NAME}_router
@@ -206,9 +206,9 @@ echo "Assign FIP[${INSTANCE_FIP}] to server ${INSTANCE_NAME}"
 openstack server add floating ip ${INSTANCE_NAME} ${INSTANCE_FIP}
 
 ## create and attach a volume
-CINDER_VOL_ID=$(openstack volume create --size 1 vol_${SUFFIX} -f json | jq -r .id)
-echo "Attach volume vol_${SUFFIX} to instance ${INSTANCE_NAME}"
-openstack server add volume ${INSTANCE_NAME} ${CINDER_VOL_ID}
+#CINDER_VOL_ID=$(openstack volume create --size 1 vol_${SUFFIX} -f json | jq -r .id)
+#echo "Attach volume vol_${SUFFIX} to instance ${INSTANCE_NAME}"
+#openstack server add volume ${INSTANCE_NAME} ${CINDER_VOL_ID}
 
 ## SSH to VM through it's floating ip
 if [[ "${MODE}" == "sanity" ]]; then
