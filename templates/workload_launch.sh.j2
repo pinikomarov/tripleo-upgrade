@@ -100,7 +100,7 @@ INSTANCE_PORT=$(openstack port list -f json | jq -r -c ".[] | select(.[\"Fixed I
 neutron floatingip-associate ${INSTANCE_FIP} ${INSTANCE_PORT}
 
 ## create and attach a volume
-CINDER_VOL_ID=$(openstack volume create --size 1 vol_$(openssl rand -hex 5) -f json | jq -r .id)
-openstack server add volume ${INSTANCE_NAME} ${CINDER_VOL_ID}
+#CINDER_VOL_ID=$(openstack volume create --size 1 vol_$(openssl rand -hex 5) -f json | jq -r .id)
+#openstack server add volume ${INSTANCE_NAME} ${CINDER_VOL_ID}
 
 echo "floating-ip: $(openstack floating ip show ${INSTANCE_FIP} -f json | jq -r .floating_ip_address)" > ~/${INSTANCE_NAME}
